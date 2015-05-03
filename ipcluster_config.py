@@ -37,7 +37,7 @@ c = get_config()
 # or:
 # 
 #     ipcluster start --controller=MPI
-# c.IPClusterStart.controller_launcher_class = 'LocalControllerLauncher'
+c.IPClusterStart.controller_launcher_class = 'SSH'
 
 # The class for launching a set of Engines. Change this value to use various
 # batch systems to launch your engines, such as PBS,SGE,MPI,etc. Each launcher
@@ -69,7 +69,7 @@ c = get_config()
 # or:
 # 
 #     ipcluster start --engines=MPI
-# c.IPClusterStart.engine_launcher_class = 'LocalEngineSetLauncher'
+c.IPClusterEngines.engine_launcher_class = 'SSHProxy'
 
 # String id to add to runtime files, to prevent name collisions when using
 # multiple clusters with a single profile simultaneously.
@@ -393,7 +393,7 @@ c = get_config()
 # c.SSHLauncher.hostname = ''
 
 # command for starting ssh
-# c.SSHLauncher.ssh_cmd = ['ssh']
+c.SSHLauncher.ssh_cmd = ['/usr/local/ossh/bin/ssh']
 
 # user@hostname location for ssh in one setting
 # c.SSHLauncher.location = ''
@@ -402,7 +402,7 @@ c = get_config()
 # c.SSHLauncher.to_send = []
 
 # command for sending files
-# c.SSHLauncher.scp_cmd = ['scp']
+c.SSHLauncher.scp_cmd = ['/usr/local/ossh/bin/scp']
 
 # List of (remote, local) files to fetch after starting
 # c.SSHLauncher.to_fetch = []
@@ -421,7 +421,7 @@ c = get_config()
 # SSHLauncher
 
 # hostname on which to launch the program
-# c.SSHControllerLauncher.hostname = ''
+c.SSHControllerLauncher.hostname = 'spirit01.afrl.hpc.mil'
 
 # Popen command to launch ipcontroller.
 # c.SSHControllerLauncher.controller_cmd = ['/home/cekees/proteus/linux2/bin/python2.7', '-m', 'IPython.parallel.controller']
@@ -533,7 +533,7 @@ c = get_config()
 # c.SSHProxyEngineSetLauncher.ipcluster_cmd = ['ipcluster']
 
 # hostname on which to launch the program
-# c.SSHProxyEngineSetLauncher.hostname = ''
+c.SSHProxyEngineSetLauncher.hostname = 'spirit01.afrl.hpc.mil'
 
 # command for starting ssh
 # c.SSHProxyEngineSetLauncher.ssh_cmd = ['ssh']
