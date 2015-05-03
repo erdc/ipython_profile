@@ -436,7 +436,7 @@ c.SSHControllerLauncher.hostname = 'spirit01.afrl.hpc.mil'
 # 
 # If not specified, use calling profile, stripping out possible leading homedir.
 # c.SSHControllerLauncher.remote_profile_dir = ''
-
+c.SSHClusterLauncher.remote_profile_dir = '.ipython/profile_spirit_frontend'
 # user@hostname location for ssh in one setting
 # c.SSHControllerLauncher.location = ''
 
