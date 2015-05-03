@@ -39,7 +39,7 @@ c = get_config()
 # c.IPControllerApp.log_level = 30
 
 # Set the working dir for the process.
-# c.IPControllerApp.work_dir = u'/home/cekees'
+# c.IPControllerApp.work_dir = u'/work1/home/cekees'
 
 # ssh url for engines to use when connecting to the Controller processes. It
 # should be of the form: [user@]server[:port]. The Controller's listening
@@ -61,7 +61,7 @@ c = get_config()
 # ssh url for clients to use when connecting to the Controller processes. It
 # should be of the form: [user@]server[:port]. The Controller's listening
 # addresses must be accessible from the ssh server
-# c.IPControllerApp.ssh_server = u''
+c.IPControllerApp.ssh_server = u'spirit01.afrl.hpc.mil'
 
 # The IPython profile to use.
 # c.IPControllerApp.profile = u'default'
@@ -74,7 +74,7 @@ c = get_config()
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This option can also be specified through the environment
+# $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
 # c.IPControllerApp.ipython_dir = u''
 
@@ -186,7 +186,7 @@ c = get_config()
 # 'hmac-HASH'.
 # c.Session.signature_scheme = 'hmac-sha256'
 
-# execution key, for signing messages.
+# execution key, for extra authentication.
 # c.Session.key = ''
 
 # Debug output in the Session
@@ -222,7 +222,7 @@ c = get_config()
 # c.HubFactory.monitor_transport = 'tcp'
 
 # IP on which to listen for client connections. [default: loopback]
-# c.HubFactory.client_ip = u''
+#c.HubFactory.client_ip = u''
 
 # Client/Engine Port pair for Task queue
 # c.HubFactory.task = None
@@ -238,7 +238,7 @@ c = get_config()
 
 # The IP address for registration.  This is generally either '127.0.0.1' for
 # loopback only or '*' for all interfaces.
-# c.HubFactory.ip = u''
+c.HubFactory.ip = u'*'
 
 # Engine registration timeout in seconds [default:
 # max(30,10*heartmonitor.period)]
@@ -314,11 +314,6 @@ c = get_config()
 
 # A basic HeartMonitor class pingstream: a PUB stream pongstream: an ROUTER
 # stream period: the period of the heartbeat in milliseconds
-
-# Whether to include every heartbeat in debugging output.
-# 
-# Has to be set explicitly, because there will be *a lot* of output.
-# c.HeartMonitor.debug = False
 
 # The frequency at which the Hub pings the engines for heartbeats (in ms)
 # c.HeartMonitor.period = 3000

@@ -19,7 +19,7 @@ c = get_config()
 # c.IPEngineApp.startup_command = ''
 
 # Set the working dir for the process.
-# c.IPEngineApp.work_dir = u'/home/cekees'
+# c.IPEngineApp.work_dir = u'/work1/home/cekees'
 
 # whether to log to a file
 # c.IPEngineApp.log_to_file = False
@@ -79,7 +79,7 @@ c = get_config()
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This option can also be specified through the environment
+# $HOME/.ipython. This options can also be specified through the environment
 # variable IPYTHONDIR.
 # c.IPEngineApp.ipython_dir = u''
 
@@ -121,15 +121,8 @@ c = get_config()
 # Set the color scheme (NoColor, Linux, or LightBG).
 # c.ZMQInteractiveShell.colors = 'Linux'
 
-# If True, anything that would be passed to the pager will be displayed as
-# regular output instead.
-# c.ZMQInteractiveShell.display_page = False
-
 # 
 # c.ZMQInteractiveShell.separate_in = '\n'
-
-# Enable magic commands to be called without the leading %.
-# c.ZMQInteractiveShell.automagic = True
 
 # Deprecated, use PromptManager.in2_template
 # c.ZMQInteractiveShell.prompt_in2 = '   .\\D.: '
@@ -162,14 +155,11 @@ c = get_config()
 # Deprecated, use PromptManager.justify
 # c.ZMQInteractiveShell.prompts_pad_left = True
 
-# The part of the banner to be printed before the profile
-# c.ZMQInteractiveShell.banner1 = 'Python 2.7.9 (default, Apr  4 2015, 23:08:09) \nType "copyright", "credits" or "license" for more information.\n\nIPython 3.1.0 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
-
 # 
 # c.ZMQInteractiveShell.readline_parse_and_bind = ['tab: complete', '"\\C-l": clear-screen', 'set show-all-if-ambiguous on', '"\\C-o": tab-insert', '"\\C-r": reverse-search-history', '"\\C-s": forward-search-history', '"\\C-p": history-search-backward', '"\\C-n": history-search-forward', '"\\e[A": history-search-backward', '"\\e[B": history-search-forward', '"\\C-k": kill-line', '"\\C-u": unix-line-discard']
 
-# The part of the banner to be printed after the profile
-# c.ZMQInteractiveShell.banner2 = ''
+# Enable magic commands to be called without the leading %.
+# c.ZMQInteractiveShell.automagic = True
 
 # 
 # c.ZMQInteractiveShell.debug = False
@@ -183,8 +173,7 @@ c = get_config()
 # 
 # c.ZMQInteractiveShell.readline_remove_delims = '-/~'
 
-# Start logging to the default log file in overwrite mode. Use `logappend` to
-# specify a log file to **append** logs to.
+# Start logging to the default log file.
 # c.ZMQInteractiveShell.logstart = False
 
 # The name of the logfile to use.
@@ -196,8 +185,7 @@ c = get_config()
 # Save multi-line entries as one entry in readline history
 # c.ZMQInteractiveShell.multiline_history = True
 
-# Start logging to the given file in append mode. Use `logfile` to specify a log
-# file to **overwrite** logs to.
+# Start logging to the given file in append mode.
 # c.ZMQInteractiveShell.logappend = ''
 
 # 
@@ -307,7 +295,7 @@ c = get_config()
 # 'hmac-HASH'.
 # c.Session.signature_scheme = 'hmac-sha256'
 
-# execution key, for signing messages.
+# execution key, for extra authentication.
 # c.Session.key = ''
 
 # Debug output in the Session
@@ -384,21 +372,19 @@ c = get_config()
 # c.EngineFactory.paramiko = False
 
 #------------------------------------------------------------------------------
-# IPythonKernel configuration
+# Kernel configuration
 #------------------------------------------------------------------------------
-
-# IPythonKernel will inherit config from: Kernel
 
 # Whether to use appnope for compatiblity with OS X App Nap.
 # 
 # Only affects OS X >= 10.9.
-# c.IPythonKernel._darwin_app_nap = True
+# c.Kernel._darwin_app_nap = True
 
 # 
-# c.IPythonKernel._execute_sleep = 0.0005
+# c.Kernel._execute_sleep = 0.0005
 
 # 
-# c.IPythonKernel._poll_interval = 0.05
+# c.Kernel._poll_interval = 0.05
 
 #------------------------------------------------------------------------------
 # MPI configuration
