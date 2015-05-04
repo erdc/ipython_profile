@@ -13,7 +13,7 @@ c = get_config()
 # c.IPEngineApp.profile = u'default'
 
 # Set the log level by value or name.
-# c.IPEngineApp.log_level = 30
+c.IPEngineApp.log_level = 'DEBUG'
 
 # specify a command to be run at startup
 # c.IPEngineApp.startup_command = ''
@@ -393,10 +393,10 @@ c = get_config()
 # Configurable for MPI initialization
 
 # 
-#c.MPI.default_inits = {'mpi4py': 'from mpi4py import MPI as mpi\nmpi.size = mpi.COMM_WORLD.Get_size()\nmpi.rank = mpi.COMM_WORLD.Get_rank()\n'}
+c.MPI.default_inits = {'mpi4py': 'from mpi4py import MPI as mpi\nmpi.size = mpi.COMM_WORLD.Get_size()\nmpi.rank = mpi.COMM_WORLD.Get_rank()\nprint mpi.rank\n'}
 
 # Initialization code for MPI
 # c.MPI.init_script = ''
 
 # How to enable MPI (mpi4py, pytrilinos, or empty string to disable).
-# c.MPI.use = ''
+c.MPI.use = 'mpi4py'
