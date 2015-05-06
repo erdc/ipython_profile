@@ -708,9 +708,11 @@ c.PBSEngineSetLauncher.batch_template = ur"""#!/bin/bash
 #PBS -l application=proteus
 #PBS -j oe
 #PBS -l walltime=01:00:00
-#PBS -l ncpus={n}
+#PBS -l select={n//32}:ncpus=32:mpiprocs=32
 #PBS -q debug
-mpiexec_mpt -np {n} ipengine --profile-dir={profile_dir}
+mkdir $WORKDIR/ipy_pro.$PBS_JOBID
+cd $WORKDIR/ipy_pro.$PBS_JOBID
+aprun -n {n} ipengine --profile-dir={profile_dir}
 """
 
 # The PBS submit command ['qsub']
