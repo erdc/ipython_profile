@@ -44,7 +44,7 @@ c = get_config()
 # ssh url for engines to use when connecting to the Controller processes. It
 # should be of the form: [user@]server[:port]. The Controller's listening
 # addresses must be accessible from the ssh server
-# c.IPControllerApp.engine_ssh_server = u''
+c.IPControllerApp.engine_ssh_server = u'viutill-0001.erdc.hpc.mil'
 
 # Path to an extra config file to load.
 # 
@@ -61,7 +61,7 @@ c = get_config()
 # ssh url for clients to use when connecting to the Controller processes. It
 # should be of the form: [user@]server[:port]. The Controller's listening
 # addresses must be accessible from the ssh server
-c.IPControllerApp.ssh_server = u'spirit01.afrl.hpc.mil'
+c.IPControllerApp.ssh_server = u'us0.erdc.hpc.mil'
 
 # The IPython profile to use.
 # c.IPControllerApp.profile = u'default'

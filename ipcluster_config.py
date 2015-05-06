@@ -703,14 +703,20 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # The string that is the batch script template itself.
 #c.PBSEngineSetLauncher.batch_template_file = os.path.expanduser('~/pbs.engine.template')
 c.PBSEngineSetLauncher.batch_template = ur"""#!/bin/bash
-#PBS -N ipy_pro
 #PBS -A ERDCV00898R40
-#PBS -l application=proteus
+#PBS -l walltime=001:00:00
+#PBS -l select={n//32}:ncpus=32:mpiprocs=32:mem=250gb
+#PBS -q parallel
+#PBS -N ipy_pro
 #PBS -j oe
-#PBS -l walltime=01:00:00
-#PBS -l ncpus={n}
-#PBS -q debug
-mpiexec_mpt -np {n} ipengine --profile-dir={profile_dir}
+#PBS -l application=proteus
+#PBS -V
+#PBS -m eba
+#PBS -M cekees@gmail.com
+which ipython
+#mkdir $WORKDIR/ipy_pro.$PBS_JOBID
+#cd $WORKDIR/ipy_pro.$PBS_JOBID
+mpirun -np {n} ipengine --profile=us_frontend
 """
 
 # The PBS submit command ['qsub']
