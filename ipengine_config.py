@@ -363,7 +363,7 @@ c.IPEngineApp.log_level = 'DEBUG'
 
 # The time (in seconds) to wait for the Controller to respond to registration
 # requests before giving up.
-# c.EngineFactory.timeout = 5.0
+# c.EngineFactory.timeout = 30.0
 
 # The SSH server to use for tunneling connections to the Controller.
 # c.EngineFactory.sshserver = u''

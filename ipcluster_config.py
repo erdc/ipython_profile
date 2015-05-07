@@ -38,7 +38,7 @@ c = get_config()
 # or:
 # 
 #     ipcluster start --controller=MPI
-# c.IPClusterStart.controller_launcher_class = 'LocalControllerLauncher'
+c.IPClusterStart.controller_launcher_class = 'PBS'
 
 # The class for launching a set of Engines. Change this value to use various
 # batch systems to launch your engines, such as PBS,SGE,MPI,etc. Each launcher
@@ -668,7 +668,18 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.PBSControllerLauncher.queue = u''
 
 # The string that is the batch script template itself.
-# c.PBSControllerLauncher.batch_template = ''
+c.PBSControllerLauncher.batch_template = ur"""#!/bin/bash
+#PBS -N ipy_pro_con
+#PBS -A ERDCV00898R40
+#PBS -l application=proteus
+#PBS -l ccm=1
+#PBS -j oe
+#PBS -l walltime=02:00:00
+#PBS -l select=1:ncpus=32:mpiprocs=1
+#PBS -q R2352946
+aprun -n 1 ipcontroller --profile-dir="/lustre/home1/u/cekees/.ipython/profile_garnet_frontend"
+"""
+
 
 # The PBS submit command ['qsub']
 # c.PBSControllerLauncher.submit_command = ['qsub']
@@ -703,16 +714,14 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # The string that is the batch script template itself.
 #c.PBSEngineSetLauncher.batch_template_file = os.path.expanduser('~/pbs.engine.template')
 c.PBSEngineSetLauncher.batch_template = ur"""#!/bin/bash
-#PBS -N ipy_pro
+#PBS -N ipy_pro_eng
 #PBS -A ERDCV00898R40
 #PBS -l application=proteus
 #PBS -j oe
 #PBS -l walltime=01:00:00
 #PBS -l select={n//32}:ncpus=32:mpiprocs=32
-#PBS -q debug
-mkdir $WORKDIR/ipy_pro.$PBS_JOBID
-cd $WORKDIR/ipy_pro.$PBS_JOBID
-aprun -n {n} ipengine --profile-dir={profile_dir}
+#PBS -q R2352946
+aprun -n {n} ipengine --profile-dir="/lustre/home1/u/cekees/.ipython/profile_garnet_frontend"
 """
 
 # The PBS submit command ['qsub']
