@@ -710,9 +710,7 @@ c.PBSEngineSetLauncher.batch_template = ur"""#!/bin/bash
 #PBS -l walltime=01:00:00
 #PBS -l select={n//32}:ncpus=32:mpiprocs=32
 #PBS -q debug
-mkdir $WORKDIR/ipy_pro.$PBS_JOBID
-cd $WORKDIR/ipy_pro.$PBS_JOBID
-aprun -n {n} ipengine --profile-dir={profile_dir}
+aprun -n {n} ipengine --profile-dir="/lustre/usr/local/u/cekees/.ipython/profile_copper_frontend"
 """
 
 # The PBS submit command ['qsub']

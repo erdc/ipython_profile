@@ -44,7 +44,7 @@ c = get_config()
 # ssh url for engines to use when connecting to the Controller processes. It
 # should be of the form: [user@]server[:port]. The Controller's listening
 # addresses must be accessible from the ssh server
-c.IPControllerApp.engine_ssh_server = u'copper01.ors.hpc.mil'
+# c.IPControllerApp.engine_ssh_server = u'copper01.ors.hpc.mil'
 
 # Path to an extra config file to load.
 # 
@@ -238,7 +238,7 @@ c.IPControllerApp.ssh_server = u'copper01.ors.hpc.mil'
 
 # The IP address for registration.  This is generally either '127.0.0.1' for
 # loopback only or '*' for all interfaces.
-c.HubFactory.ip = u'*'
+c.HubFactory.ip = u'192.168.200.11'
 
 # Engine registration timeout in seconds [default:
 # max(30,10*heartmonitor.period)]
