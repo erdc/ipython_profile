@@ -421,7 +421,7 @@ c.SSHLauncher.scp_cmd = ['/usr/local/ossh/bin/scp']
 # SSHLauncher
 
 # hostname on which to launch the program
-c.SSHControllerLauncher.hostname = u'us01.erdc.hpc.mil'
+c.SSHControllerLauncher.hostname = u'copper01.ors.hpc.mil'
 
 # Popen command to launch ipcontroller.
 # c.SSHControllerLauncher.controller_cmd = ['/home/cekees/proteus/linux2/bin/python2.7', '-m', 'IPython.parallel.controller']
@@ -436,7 +436,7 @@ c.SSHControllerLauncher.hostname = u'us01.erdc.hpc.mil'
 # 
 # If not specified, use calling profile, stripping out possible leading homedir.
 # c.SSHControllerLauncher.remote_profile_dir = ''
-c.SSHClusterLauncher.remote_profile_dir = '.ipython/profile_us_frontend'
+c.SSHClusterLauncher.remote_profile_dir = '.ipython/profile_copper_frontend'
 # user@hostname location for ssh in one setting
 # c.SSHControllerLauncher.location = ''
 
@@ -533,7 +533,7 @@ c.SSHClusterLauncher.remote_profile_dir = '.ipython/profile_us_frontend'
 # c.SSHProxyEngineSetLauncher.ipcluster_cmd = ['ipcluster']
 
 # hostname on which to launch the program
-c.SSHProxyEngineSetLauncher.hostname = u'us01.erdc.hpc.mil'
+c.SSHProxyEngineSetLauncher.hostname = u'copper01.ors.hpc.mil'
 
 # command for starting ssh
 # c.SSHProxyEngineSetLauncher.ssh_cmd = ['ssh']
