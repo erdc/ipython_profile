@@ -16,7 +16,7 @@ c = get_config()
 # c.IPLoggerApp.log_level = 30
 
 # Set the working dir for the process.
-# c.IPLoggerApp.work_dir = u'/work1/home/cekees'
+# c.IPLoggerApp.work_dir = u'/lustre/home1/u/cekees'
 
 # whether to log to a file
 # c.IPLoggerApp.log_to_file = False
@@ -63,7 +63,7 @@ c = get_config()
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This options can also be specified through the environment
+# $HOME/.ipython. This option can also be specified through the environment
 # variable IPYTHONDIR.
 # c.IPLoggerApp.ipython_dir = u''
 

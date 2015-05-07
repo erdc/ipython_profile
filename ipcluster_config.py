@@ -1,4 +1,3 @@
-import os
 # Configuration file for ipcluster.
 
 c = get_config()
@@ -38,7 +37,7 @@ c = get_config()
 # or:
 # 
 #     ipcluster start --controller=MPI
-c.IPClusterStart.controller_launcher_class = 'PBS'
+# c.IPClusterStart.controller_launcher_class = 'LocalControllerLauncher'
 
 # The class for launching a set of Engines. Change this value to use various
 # batch systems to launch your engines, such as PBS,SGE,MPI,etc. Each launcher
@@ -70,7 +69,7 @@ c.IPClusterStart.controller_launcher_class = 'PBS'
 # or:
 # 
 #     ipcluster start --engines=MPI
-c.IPClusterEngines.engine_launcher_class = 'PBS'
+# c.IPClusterStart.engine_launcher_class = 'LocalEngineSetLauncher'
 
 # String id to add to runtime files, to prevent name collisions when using
 # multiple clusters with a single profile simultaneously.
@@ -92,10 +91,10 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.IPClusterStart.overwrite = False
 
 # Set the log level by value or name.
-# c.IPClusterStart.log_level = 30
+c.IPClusterStart.log_level = 'DEBUG'
 
 # Set the working dir for the process.
-# c.IPClusterStart.work_dir = u'/work1/home/cekees'
+# c.IPClusterStart.work_dir = u'/lustre/home1/u/cekees'
 
 # Path to an extra config file to load.
 # 
@@ -119,7 +118,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This options can also be specified through the environment
+# $HOME/.ipython. This option can also be specified through the environment
 # variable IPYTHONDIR.
 # c.IPClusterStart.ipython_dir = u''
 
@@ -141,7 +140,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 
 # The number of engines to start. The default is to use one for each CPU on your
 # machine
-# c.IPClusterStart.n = 32
+# c.IPClusterStart.n = 16
 
 # The timeout (in seconds)
 # c.IPClusterStart.early_shutdown = 30
@@ -188,10 +187,10 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.IPClusterEngines.extra_config_file = u''
 
 # Set the log level by value or name.
-# c.IPClusterEngines.log_level = 30
+c.IPClusterEngines.log_level = 'DEBUG'
 
 # Set the working dir for the process.
-# c.IPClusterEngines.work_dir = u'/work1/home/cekees'
+# c.IPClusterEngines.work_dir = u'/lustre/home1/u/cekees'
 
 # whether to log to a file
 # c.IPClusterEngines.log_to_file = False
@@ -233,7 +232,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # or:
 # 
 #     ipcluster start --engines=MPI
-# c.IPClusterEngines.engine_launcher_class = 'LocalEngineSetLauncher'
+c.IPClusterEngines.engine_launcher_class = 'PBS'
 
 # Whether to create profile dir if it doesn't exist
 # c.IPClusterEngines.auto_create = False
@@ -246,7 +245,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 
 # The number of engines to start. The default is to use one for each CPU on your
 # machine
-# c.IPClusterEngines.n = 32
+# c.IPClusterEngines.n = 16
 
 # String id to add to runtime files, to prevent name collisions when using
 # multiple clusters with a single profile simultaneously.
@@ -276,7 +275,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This options can also be specified through the environment
+# $HOME/.ipython. This option can also be specified through the environment
 # variable IPYTHONDIR.
 # c.IPClusterEngines.ipython_dir = u''
 
@@ -296,7 +295,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.LocalControllerLauncher.controller_args = ['--log-to-file', '--log-level=20']
 
 # Popen command to launch ipcontroller.
-# c.LocalControllerLauncher.controller_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.controller']
+# c.LocalControllerLauncher.controller_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.controller']
 
 #------------------------------------------------------------------------------
 # LocalEngineLauncher configuration
@@ -308,7 +307,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.LocalEngineLauncher.engine_args = ['--log-to-file', '--log-level=20']
 
 # command to launch the Engine.
-# c.LocalEngineLauncher.engine_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.engine']
+# c.LocalEngineLauncher.engine_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.engine']
 
 #------------------------------------------------------------------------------
 # LocalEngineSetLauncher configuration
@@ -327,7 +326,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.LocalEngineSetLauncher.engine_args = ['--log-to-file', '--log-level=20']
 
 # command to launch the Engine.
-# c.LocalEngineSetLauncher.engine_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.engine']
+# c.LocalEngineSetLauncher.engine_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.engine']
 
 #------------------------------------------------------------------------------
 # MPILauncher configuration
@@ -359,7 +358,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.MPIControllerLauncher.controller_args = ['--log-to-file', '--log-level=20']
 
 # Popen command to launch ipcontroller.
-# c.MPIControllerLauncher.controller_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.controller']
+# c.MPIControllerLauncher.controller_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.controller']
 
 #------------------------------------------------------------------------------
 # MPIEngineSetLauncher configuration
@@ -379,7 +378,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.MPIEngineSetLauncher.engine_args = ['--log-to-file', '--log-level=20']
 
 # command to launch the Engine.
-# c.MPIEngineSetLauncher.engine_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.engine']
+# c.MPIEngineSetLauncher.engine_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.engine']
 
 #------------------------------------------------------------------------------
 # SSHLauncher configuration
@@ -425,7 +424,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.SSHControllerLauncher.hostname = ''
 
 # Popen command to launch ipcontroller.
-# c.SSHControllerLauncher.controller_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.controller']
+# c.SSHControllerLauncher.controller_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.controller']
 
 # command-line args to pass to ipcontroller
 # c.SSHControllerLauncher.controller_args = ['--log-to-file', '--log-level=20']
@@ -466,7 +465,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.SSHEngineLauncher.hostname = ''
 
 # command to launch the Engine.
-# c.SSHEngineLauncher.engine_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.engine']
+# c.SSHEngineLauncher.engine_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.engine']
 
 # command-line arguments to pass to ipengine
 # c.SSHEngineLauncher.engine_args = ['--log-to-file', '--log-level=20']
@@ -517,7 +516,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.SSHEngineSetLauncher.engines = {}
 
 # command to launch the Engine.
-# c.SSHEngineSetLauncher.engine_cmd = ['/work1/home/cekees/proteus/spirit/bin/python2.7', '-m', 'IPython.parallel.engine']
+# c.SSHEngineSetLauncher.engine_cmd = ['/u/cekees/proteus/garnet.gnu/bin/python2.7', '-m', 'IPython.parallel.engine']
 
 #------------------------------------------------------------------------------
 # SSHProxyEngineSetLauncher configuration
@@ -668,18 +667,7 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 # c.PBSControllerLauncher.queue = u''
 
 # The string that is the batch script template itself.
-c.PBSControllerLauncher.batch_template = ur"""#!/bin/bash
-#PBS -N ipy_pro_con
-#PBS -A ERDCV00898R40
-#PBS -l application=proteus
-#PBS -l ccm=1
-#PBS -j oe
-#PBS -l walltime=02:00:00
-#PBS -l select=1:ncpus=32:mpiprocs=1
-#PBS -q R2352946
-aprun -n 1 ipcontroller --profile-dir="/lustre/home1/u/cekees/.ipython/profile_garnet_frontend"
-"""
-
+# c.PBSControllerLauncher.batch_template = ''
 
 # The PBS submit command ['qsub']
 # c.PBSControllerLauncher.submit_command = ['qsub']
@@ -712,15 +700,16 @@ aprun -n 1 ipcontroller --profile-dir="/lustre/home1/u/cekees/.ipython/profile_g
 # c.PBSEngineSetLauncher.queue = u''
 
 # The string that is the batch script template itself.
-#c.PBSEngineSetLauncher.batch_template_file = os.path.expanduser('~/pbs.engine.template')
+# c.PBSEngineSetLauncher.batch_template = ''
 c.PBSEngineSetLauncher.batch_template = ur"""#!/bin/bash
 #PBS -N ipy_pro_eng
 #PBS -A ERDCV00898R40
 #PBS -l application=proteus
+#PBS -l ccm=1
 #PBS -j oe
 #PBS -l walltime=01:00:00
 #PBS -l select={n//32}:ncpus=32:mpiprocs=32
-#PBS -q R2352946
+#PBS -q debug
 aprun -n {n} ipengine --profile-dir="/lustre/home1/u/cekees/.ipython/profile_garnet_frontend"
 """
 

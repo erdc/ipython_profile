@@ -36,15 +36,15 @@ c = get_config()
 # c.IPControllerApp.overwrite = False
 
 # Set the log level by value or name.
-# c.IPControllerApp.log_level = 30
+c.IPControllerApp.log_level = 'DEBUG'
 
 # Set the working dir for the process.
-# c.IPControllerApp.work_dir = u'/work1/home/cekees'
+# c.IPControllerApp.work_dir = u'/lustre/home1/u/cekees'
 
 # ssh url for engines to use when connecting to the Controller processes. It
 # should be of the form: [user@]server[:port]. The Controller's listening
 # addresses must be accessible from the ssh server
-#c.IPControllerApp.engine_ssh_server = u'garnet01'
+# c.IPControllerApp.engine_ssh_server = u''
 
 # Path to an extra config file to load.
 # 
@@ -56,12 +56,12 @@ c = get_config()
 
 # The external IP or domain name of the Controller, used for disambiguating
 # engine and client connections.
-#c.IPControllerApp.location = u'garnet01.erdc.hpc.mil'
+# c.IPControllerApp.location = u''
 
 # ssh url for clients to use when connecting to the Controller processes. It
 # should be of the form: [user@]server[:port]. The Controller's listening
 # addresses must be accessible from the ssh server
-#c.IPControllerApp.ssh_server = u'garnet01.erdc.hpc.mil'
+c.IPControllerApp.ssh_server = u'garnet01.erdc.hpc.mil'
 
 # The IPython profile to use.
 # c.IPControllerApp.profile = u'default'
@@ -74,7 +74,7 @@ c = get_config()
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This options can also be specified through the environment
+# $HOME/.ipython. This option can also be specified through the environment
 # variable IPYTHONDIR.
 # c.IPControllerApp.ipython_dir = u''
 
@@ -186,7 +186,7 @@ c = get_config()
 # 'hmac-HASH'.
 # c.Session.signature_scheme = 'hmac-sha256'
 
-# execution key, for extra authentication.
+# execution key, for signing messages.
 # c.Session.key = ''
 
 # Debug output in the Session
@@ -222,7 +222,7 @@ c = get_config()
 # c.HubFactory.monitor_transport = 'tcp'
 
 # IP on which to listen for client connections. [default: loopback]
-#c.HubFactory.client_ip = u''
+# c.HubFactory.client_ip = u''
 
 # Client/Engine Port pair for Task queue
 # c.HubFactory.task = None
@@ -238,23 +238,20 @@ c = get_config()
 
 # The IP address for registration.  This is generally either '127.0.0.1' for
 # loopback only or '*' for all interfaces.
-#c.HubFactory.ip =u'140.31.13.201'
-#c.HubFactory.ip = u'192.168.60.181'
-#c.HubFactory.ip = u'192.168.208.101'
-c.HubFactory.ip = u'*'
-#c.HubFactory.ip = u'127.0.0.1'
+c.HubFactory.ip = u'192.168.207.101'
+
 # Engine registration timeout in seconds [default:
 # max(30,10*heartmonitor.period)]
-c.HubFactory.registration_timeout = 30
+# c.HubFactory.registration_timeout = 0
 
 # Client/Engine Port pair for MUX queue
 # c.HubFactory.mux = None
 
 # PUB port for sending engine status notifications
-#c.HubFactory.notifier_port = 5001
+# c.HubFactory.notifier_port = 0
 
 # The port on which the Hub listens for registration.
-#c.HubFactory.regport = 5000
+# c.HubFactory.regport = 0
 
 # The 0MQ url used for registration. This sets transport, ip, and port in one
 # variable. For example: url='tcp://127.0.0.1:12345' or url='epgm://*:90210'
@@ -317,6 +314,11 @@ c.HubFactory.registration_timeout = 30
 
 # A basic HeartMonitor class pingstream: a PUB stream pongstream: an ROUTER
 # stream period: the period of the heartbeat in milliseconds
+
+# Whether to include every heartbeat in debugging output.
+# 
+# Has to be set explicitly, because there will be *a lot* of output.
+# c.HeartMonitor.debug = False
 
 # The frequency at which the Hub pings the engines for heartbeats (in ms)
 # c.HeartMonitor.period = 3000

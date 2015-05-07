@@ -19,31 +19,34 @@ c = get_config()
 # The export format to be used.
 # c.NbConvertApp.export_format = 'html'
 
-# Set the log level by value or name.
-# c.NbConvertApp.log_level = 30
-
 # List of notebooks to convert. Wildcards are supported. Filenames passed
 # positionally will be added to the list.
 # c.NbConvertApp.notebooks = []
+
+# PostProcessor class used to write the  results of the conversion
+# c.NbConvertApp.postprocessor_class = u''
+
+# Writer class used to write the  results of the conversion
+# c.NbConvertApp.writer_class = 'FilesWriter'
+
+# Set the log level by value or name.
+# c.NbConvertApp.log_level = 30
 
 # Path to an extra config file to load.
 # 
 # If specified, load this config file in addition to any other IPython config.
 # c.NbConvertApp.extra_config_file = u''
 
-# PostProcessor class used to write the  results of the conversion
-# c.NbConvertApp.postprocessor_class = u''
-
 # Whether to create profile dir if it doesn't exist
 # c.NbConvertApp.auto_create = False
 
-# overwrite base name use for output files. can only  be use when converting one
+# overwrite base name use for output files. can only be used when converting one
 # notebook at a time.
 # c.NbConvertApp.output_base = ''
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This options can also be specified through the environment
+# $HOME/.ipython. This option can also be specified through the environment
 # variable IPYTHONDIR.
 # c.NbConvertApp.ipython_dir = u''
 
@@ -63,8 +66,10 @@ c = get_config()
 # error.  The default is to append a short message to the usual traceback
 # c.NbConvertApp.verbose_crash = False
 
-# Writer class used to write the  results of the conversion
-# c.NbConvertApp.writer_class = 'FilesWriter'
+# Whether to apply a suffix prior to the extension (only relevant when
+# converting to notebook format). The suffix is determined by the exporter, and
+# is usually '.nbconvert'.
+# c.NbConvertApp.use_output_suffix = True
 
 # Whether to overwrite existing config files when copying
 # c.NbConvertApp.overwrite = False
@@ -79,9 +84,10 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.NbConvertBase.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.NbConvertBase.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.NbConvertBase.default_language = 'ipython'
 
 #------------------------------------------------------------------------------
@@ -109,14 +115,14 @@ c = get_config()
 # accompanying resources dict.
 
 # Extension of the file that should be written to disk
-# c.Exporter.file_extension = 'txt'
+# c.Exporter.file_extension = '.txt'
 
 # List of preprocessors, by name or namespace, to enable.
 # c.Exporter.preprocessors = []
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.Exporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.Exporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 #------------------------------------------------------------------------------
 # HTMLExporter configuration
@@ -143,13 +149,13 @@ c = get_config()
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.HTMLExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.HTMLExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 # 
 # c.HTMLExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.HTMLExporter.file_extension = 'txt'
+# c.HTMLExporter.file_extension = '.txt'
 
 # 
 # c.HTMLExporter.jinja_comment_block_end = ''
@@ -199,13 +205,13 @@ c = get_config()
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.LatexExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.LatexExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 # 
 # c.LatexExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.LatexExporter.file_extension = 'txt'
+# c.LatexExporter.file_extension = '.txt'
 
 # 
 # c.LatexExporter.jinja_comment_block_end = '=))'
@@ -250,13 +256,13 @@ c = get_config()
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.MarkdownExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.MarkdownExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 # 
 # c.MarkdownExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.MarkdownExporter.file_extension = 'txt'
+# c.MarkdownExporter.file_extension = '.txt'
 
 # 
 # c.MarkdownExporter.jinja_comment_block_end = ''
@@ -280,6 +286,94 @@ c = get_config()
 # c.MarkdownExporter.preprocessors = []
 
 #------------------------------------------------------------------------------
+# NotebookExporter configuration
+#------------------------------------------------------------------------------
+
+# Exports to an IPython notebook.
+
+# NotebookExporter will inherit config from: Exporter
+
+# The nbformat version to write. Use this to downgrade notebooks.
+# c.NotebookExporter.nbformat_version = 4
+
+# Extension of the file that should be written to disk
+# c.NotebookExporter.file_extension = '.txt'
+
+# List of preprocessors, by name or namespace, to enable.
+# c.NotebookExporter.preprocessors = []
+
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.NotebookExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+
+#------------------------------------------------------------------------------
+# PDFExporter configuration
+#------------------------------------------------------------------------------
+
+# Writer designed to write to PDF files
+
+# PDFExporter will inherit config from: LatexExporter, TemplateExporter,
+# Exporter
+
+# File extensions of temp files to remove after running.
+# c.PDFExporter.temp_file_exts = ['.aux', '.bbl', '.blg', '.idx', '.log', '.out']
+
+# 
+# c.PDFExporter.jinja_variable_block_start = '((('
+
+# 
+# c.PDFExporter.jinja_logic_block_start = '((*'
+
+# Whether to display the output of latex commands.
+# c.PDFExporter.verbose = False
+
+# formats of raw cells to be included in this Exporter's output.
+# c.PDFExporter.raw_mimetypes = []
+
+# Shell command used to run bibtex.
+# c.PDFExporter.bib_command = [u'bibtex', u'{filename}']
+
+# List of preprocessors available by default, by name, namespace,  instance, or
+# type.
+# c.PDFExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+
+# 
+# c.PDFExporter.template_path = ['.']
+
+# Extension of the file that should be written to disk
+# c.PDFExporter.file_extension = '.txt'
+
+# 
+# c.PDFExporter.jinja_comment_block_end = '=))'
+
+# 
+# c.PDFExporter.jinja_variable_block_end = ')))'
+
+# 
+# c.PDFExporter.template_extension = '.tplx'
+
+# List of preprocessors, by name or namespace, to enable.
+# c.PDFExporter.preprocessors = []
+
+# Dictionary of filters, by name and namespace, to add to the Jinja environment.
+# c.PDFExporter.filters = {}
+
+# 
+# c.PDFExporter.jinja_comment_block_start = '((='
+
+# Name of the template file to use
+# c.PDFExporter.template_file = u'default'
+
+# How many times latex will be called.
+# c.PDFExporter.latex_count = 3
+
+# 
+# c.PDFExporter.jinja_logic_block_end = '*))'
+
+# Shell command used to compile latex.
+# c.PDFExporter.latex_command = [u'pdflatex', u'{filename}']
+
+#------------------------------------------------------------------------------
 # PythonExporter configuration
 #------------------------------------------------------------------------------
 
@@ -301,13 +395,13 @@ c = get_config()
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.PythonExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.PythonExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 # 
 # c.PythonExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.PythonExporter.file_extension = 'txt'
+# c.PythonExporter.file_extension = '.txt'
 
 # 
 # c.PythonExporter.jinja_comment_block_end = ''
@@ -352,13 +446,13 @@ c = get_config()
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.RSTExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.RSTExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 # 
 # c.RSTExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.RSTExporter.file_extension = 'txt'
+# c.RSTExporter.file_extension = '.txt'
 
 # 
 # c.RSTExporter.jinja_comment_block_end = ''
@@ -404,13 +498,13 @@ c = get_config()
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.SlidesExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.SlidesExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 # 
 # c.SlidesExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.SlidesExporter.file_extension = 'txt'
+# c.SlidesExporter.file_extension = '.txt'
 
 # 
 # c.SlidesExporter.jinja_comment_block_end = ''
@@ -447,8 +541,9 @@ c = get_config()
 # - citation2latex - highlight2html - filter_data_type - markdown2html -
 # markdown2rst - get_lines - ansi2latex - strip_ansi - add_prompts -
 # comment_lines - ascii_only - markdown2latex - escape_latex - add_anchor -
-# ipython2python - posix_path - highlight2latex - path2url - ansi2html -
-# wrap_text - indent - strip_dollars - html2text - strip_files_prefix
+# ipython2python - posix_path - highlight2latex - path2url - prevent_list_blocks
+# - ansi2html - wrap_text - indent - strip_dollars - html2text -
+# strip_files_prefix
 
 # TemplateExporter will inherit config from: Exporter
 
@@ -466,13 +561,13 @@ c = get_config()
 
 # List of preprocessors available by default, by name, namespace,  instance, or
 # type.
-# c.TemplateExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
+# c.TemplateExporter.default_preprocessors = ['IPython.nbconvert.preprocessors.coalesce_streams', 'IPython.nbconvert.preprocessors.SVG2PDFPreprocessor', 'IPython.nbconvert.preprocessors.ExtractOutputPreprocessor', 'IPython.nbconvert.preprocessors.CSSHTMLHeaderPreprocessor', 'IPython.nbconvert.preprocessors.RevealHelpPreprocessor', 'IPython.nbconvert.preprocessors.LatexPreprocessor', 'IPython.nbconvert.preprocessors.ClearOutputPreprocessor', 'IPython.nbconvert.preprocessors.ExecutePreprocessor', 'IPython.nbconvert.preprocessors.HighlightMagicsPreprocessor']
 
 # 
 # c.TemplateExporter.template_path = ['.']
 
 # Extension of the file that should be written to disk
-# c.TemplateExporter.file_extension = 'txt'
+# c.TemplateExporter.file_extension = '.txt'
 
 # 
 # c.TemplateExporter.jinja_comment_block_end = ''
@@ -505,7 +600,8 @@ c = get_config()
 # CSSHTMLHeaderPreprocessor will inherit config from: Preprocessor,
 # NbConvertBase
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.CSSHTMLHeaderPreprocessor.default_language = 'ipython'
 
 # CSS highlight class identifier
@@ -516,7 +612,26 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.CSSHTMLHeaderPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.CSSHTMLHeaderPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
+
+#------------------------------------------------------------------------------
+# ClearOutputPreprocessor configuration
+#------------------------------------------------------------------------------
+
+# Removes the output from all code cells in a notebook.
+
+# ClearOutputPreprocessor will inherit config from: Preprocessor, NbConvertBase
+
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
+# c.ClearOutputPreprocessor.default_language = 'ipython'
+
+# 
+# c.ClearOutputPreprocessor.enabled = False
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.ClearOutputPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 #------------------------------------------------------------------------------
 # ConvertFiguresPreprocessor configuration
@@ -527,7 +642,8 @@ c = get_config()
 # ConvertFiguresPreprocessor will inherit config from: Preprocessor,
 # NbConvertBase
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.ConvertFiguresPreprocessor.default_language = 'ipython'
 
 # Format the converter writes
@@ -541,7 +657,33 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.ConvertFiguresPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.ConvertFiguresPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
+
+#------------------------------------------------------------------------------
+# ExecutePreprocessor configuration
+#------------------------------------------------------------------------------
+
+# Executes all the cells in a notebook
+
+# ExecutePreprocessor will inherit config from: Preprocessor, NbConvertBase
+
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
+# c.ExecutePreprocessor.default_language = 'ipython'
+
+# If execution of a cell times out, interrupt the kernel and  continue executing
+# other cells rather than throwing an error and  stopping.
+# c.ExecutePreprocessor.interrupt_on_timeout = False
+
+# 
+# c.ExecutePreprocessor.enabled = False
+
+# The time to wait (in seconds) for output from executions.
+# c.ExecutePreprocessor.timeout = 30
+
+# An ordered list of preferred output type, the first encountered will usually
+# be used when converting discarding the others.
+# c.ExecutePreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 #------------------------------------------------------------------------------
 # ExtractOutputPreprocessor configuration
@@ -553,21 +695,22 @@ c = get_config()
 # ExtractOutputPreprocessor will inherit config from: Preprocessor,
 # NbConvertBase
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.ExtractOutputPreprocessor.default_language = 'ipython'
 
 # 
 # c.ExtractOutputPreprocessor.output_filename_template = '{unique_key}_{cell_index}_{index}{extension}'
 
 # 
-# c.ExtractOutputPreprocessor.extract_output_types = set(['svg', 'application/pdf', 'jpeg', 'png'])
+# c.ExtractOutputPreprocessor.extract_output_types = set(['image/png', 'application/pdf', 'image/jpeg', 'image/svg+xml'])
 
 # 
 # c.ExtractOutputPreprocessor.enabled = False
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.ExtractOutputPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.ExtractOutputPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 #------------------------------------------------------------------------------
 # HighlightMagicsPreprocessor configuration
@@ -585,12 +728,13 @@ c = get_config()
 # 
 # c.HighlightMagicsPreprocessor.enabled = False
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.HighlightMagicsPreprocessor.default_language = 'ipython'
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.HighlightMagicsPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.HighlightMagicsPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 #------------------------------------------------------------------------------
 # LatexPreprocessor configuration
@@ -603,7 +747,8 @@ c = get_config()
 
 # LatexPreprocessor will inherit config from: Preprocessor, NbConvertBase
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.LatexPreprocessor.default_language = 'ipython'
 
 # 
@@ -611,7 +756,7 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.LatexPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.LatexPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 #------------------------------------------------------------------------------
 # Preprocessor configuration
@@ -634,7 +779,8 @@ c = get_config()
 
 # Preprocessor will inherit config from: NbConvertBase
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.Preprocessor.default_language = 'ipython'
 
 # 
@@ -642,7 +788,7 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.Preprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.Preprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 #------------------------------------------------------------------------------
 # RevealHelpPreprocessor configuration
@@ -656,7 +802,8 @@ c = get_config()
 # For speaker notes to work, a local reveal.js prefix must be used.
 # c.RevealHelpPreprocessor.url_prefix = 'reveal.js'
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.RevealHelpPreprocessor.default_language = 'ipython'
 
 # 
@@ -664,7 +811,7 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.RevealHelpPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.RevealHelpPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 #------------------------------------------------------------------------------
 # SVG2PDFPreprocessor configuration
@@ -678,7 +825,8 @@ c = get_config()
 # Format the converter accepts
 # c.SVG2PDFPreprocessor.from_format = u''
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.SVG2PDFPreprocessor.default_language = 'ipython'
 
 # 
@@ -698,7 +846,7 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.SVG2PDFPreprocessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.SVG2PDFPreprocessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 # The path to Inkscape, if necessary
 # c.SVG2PDFPreprocessor.inkscape = u''
@@ -717,13 +865,21 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.FilesWriter.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
-
-# default highlight language
-# c.FilesWriter.default_language = 'ipython'
+# c.FilesWriter.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 # Directory to write output to.  Leave blank to output to the current directory
 # c.FilesWriter.build_directory = ''
+
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
+# c.FilesWriter.default_language = 'ipython'
+
+# When copying files that the notebook depends on, copy them in relation to this
+# path, such that the destination filename will be os.path.relpath(filename,
+# relpath). If FilesWriter is operating on a notebook that already exists
+# elsewhere on disk, then the default will be the directory containing that
+# notebook.
+# c.FilesWriter.relpath = ''
 
 #------------------------------------------------------------------------------
 # StdoutWriter configuration
@@ -740,9 +896,10 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.StdoutWriter.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.StdoutWriter.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.StdoutWriter.default_language = 'ipython'
 
 #------------------------------------------------------------------------------
@@ -760,43 +917,11 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.WriterBase.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.WriterBase.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.WriterBase.default_language = 'ipython'
-
-#------------------------------------------------------------------------------
-# PDFPostProcessor configuration
-#------------------------------------------------------------------------------
-
-# Writer designed to write to PDF files
-
-# PDFPostProcessor will inherit config from: PostProcessorBase, NbConvertBase
-
-# Filename extensions of temp files to remove after running.
-# c.PDFPostProcessor.temp_file_exts = ['.aux', '.bbl', '.blg', '.idx', '.log', '.out']
-
-# Whether or not to display the output of the compile call.
-# c.PDFPostProcessor.verbose = False
-
-# Shell command used to run bibtex.
-# c.PDFPostProcessor.bib_command = [u'bibtex', u'{filename}']
-
-# default highlight language
-# c.PDFPostProcessor.default_language = 'ipython'
-
-# An ordered list of preferred output type, the first encountered will usually
-# be used when converting discarding the others.
-# c.PDFPostProcessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
-
-# How many times pdflatex will be called.
-# c.PDFPostProcessor.latex_count = 3
-
-# Whether or not to open the pdf after the compile call.
-# c.PDFPostProcessor.pdf_open = False
-
-# Shell command used to compile PDF.
-# c.PDFPostProcessor.latex_command = [u'pdflatex', u'{filename}']
 
 #------------------------------------------------------------------------------
 # PostProcessorBase configuration
@@ -806,9 +931,10 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.PostProcessorBase.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.PostProcessorBase.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.PostProcessorBase.default_language = 'ipython'
 
 #------------------------------------------------------------------------------
@@ -827,7 +953,8 @@ c = get_config()
 # URL prefix for reveal.js
 # c.ServePostProcessor.reveal_prefix = 'reveal.js'
 
-# default highlight language
+# DEPRECATED default highlight language, please use language_info metadata
+# instead
 # c.ServePostProcessor.default_language = 'ipython'
 
 # port for the server to listen on.
@@ -835,10 +962,10 @@ c = get_config()
 
 # An ordered list of preferred output type, the first encountered will usually
 # be used when converting discarding the others.
-# c.ServePostProcessor.display_data_priority = ['html', 'application/pdf', 'svg', 'latex', 'png', 'jpg', 'jpeg', 'text']
+# c.ServePostProcessor.display_data_priority = ['text/html', 'application/pdf', 'text/latex', 'image/svg+xml', 'image/png', 'image/jpeg', 'text/plain']
 
 # Should the browser be opened automatically?
 # c.ServePostProcessor.open_in_browser = True
 
 # URL for reveal.js CDN.
-# c.ServePostProcessor.reveal_cdn = 'https://cdn.jsdelivr.net/reveal.js/2.5.0'
+# c.ServePostProcessor.reveal_cdn = 'https://cdn.jsdelivr.net/reveal.js/2.6.2'

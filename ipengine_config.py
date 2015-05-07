@@ -13,13 +13,13 @@ c = get_config()
 # c.IPEngineApp.profile = u'default'
 
 # Set the log level by value or name.
-c.IPEngineApp.log_level = 'DEBUG'
+# c.IPEngineApp.log_level = 30
 
 # specify a command to be run at startup
 # c.IPEngineApp.startup_command = ''
 
 # Set the working dir for the process.
-# c.IPEngineApp.work_dir = u'/work1/home/cekees'
+# c.IPEngineApp.work_dir = u'/lustre/home1/u/cekees'
 
 # whether to log to a file
 # c.IPEngineApp.log_to_file = False
@@ -79,7 +79,7 @@ c.IPEngineApp.log_level = 'DEBUG'
 
 # The name of the IPython directory. This directory is used for logging
 # configuration (through profiles), history storage, etc. The default is usually
-# $HOME/.ipython. This options can also be specified through the environment
+# $HOME/.ipython. This option can also be specified through the environment
 # variable IPYTHONDIR.
 # c.IPEngineApp.ipython_dir = u''
 
@@ -121,8 +121,15 @@ c.IPEngineApp.log_level = 'DEBUG'
 # Set the color scheme (NoColor, Linux, or LightBG).
 # c.ZMQInteractiveShell.colors = 'Linux'
 
+# If True, anything that would be passed to the pager will be displayed as
+# regular output instead.
+# c.ZMQInteractiveShell.display_page = False
+
 # 
 # c.ZMQInteractiveShell.separate_in = '\n'
+
+# Enable magic commands to be called without the leading %.
+# c.ZMQInteractiveShell.automagic = True
 
 # Deprecated, use PromptManager.in2_template
 # c.ZMQInteractiveShell.prompt_in2 = '   .\\D.: '
@@ -155,11 +162,14 @@ c.IPEngineApp.log_level = 'DEBUG'
 # Deprecated, use PromptManager.justify
 # c.ZMQInteractiveShell.prompts_pad_left = True
 
+# The part of the banner to be printed before the profile
+# c.ZMQInteractiveShell.banner1 = 'Python 2.7.9 (default, May  4 2015, 22:04:08) \nType "copyright", "credits" or "license" for more information.\n\nIPython 3.1.0 -- An enhanced Interactive Python.\n?         -> Introduction and overview of IPython\'s features.\n%quickref -> Quick reference.\nhelp      -> Python\'s own help system.\nobject?   -> Details about \'object\', use \'object??\' for extra details.\n'
+
 # 
 # c.ZMQInteractiveShell.readline_parse_and_bind = ['tab: complete', '"\\C-l": clear-screen', 'set show-all-if-ambiguous on', '"\\C-o": tab-insert', '"\\C-r": reverse-search-history', '"\\C-s": forward-search-history', '"\\C-p": history-search-backward', '"\\C-n": history-search-forward', '"\\e[A": history-search-backward', '"\\e[B": history-search-forward', '"\\C-k": kill-line', '"\\C-u": unix-line-discard']
 
-# Enable magic commands to be called without the leading %.
-# c.ZMQInteractiveShell.automagic = True
+# The part of the banner to be printed after the profile
+# c.ZMQInteractiveShell.banner2 = ''
 
 # 
 # c.ZMQInteractiveShell.debug = False
@@ -173,7 +183,8 @@ c.IPEngineApp.log_level = 'DEBUG'
 # 
 # c.ZMQInteractiveShell.readline_remove_delims = '-/~'
 
-# Start logging to the default log file.
+# Start logging to the default log file in overwrite mode. Use `logappend` to
+# specify a log file to **append** logs to.
 # c.ZMQInteractiveShell.logstart = False
 
 # The name of the logfile to use.
@@ -185,7 +196,8 @@ c.IPEngineApp.log_level = 'DEBUG'
 # Save multi-line entries as one entry in readline history
 # c.ZMQInteractiveShell.multiline_history = True
 
-# Start logging to the given file in append mode.
+# Start logging to the given file in append mode. Use `logfile` to specify a log
+# file to **overwrite** logs to.
 # c.ZMQInteractiveShell.logappend = ''
 
 # 
@@ -295,7 +307,7 @@ c.IPEngineApp.log_level = 'DEBUG'
 # 'hmac-HASH'.
 # c.Session.signature_scheme = 'hmac-sha256'
 
-# execution key, for extra authentication.
+# execution key, for signing messages.
 # c.Session.key = ''
 
 # Debug output in the Session
@@ -363,7 +375,7 @@ c.IPEngineApp.log_level = 'DEBUG'
 
 # The time (in seconds) to wait for the Controller to respond to registration
 # requests before giving up.
-# c.EngineFactory.timeout = 30.0
+# c.EngineFactory.timeout = 5.0
 
 # The SSH server to use for tunneling connections to the Controller.
 # c.EngineFactory.sshserver = u''
@@ -372,19 +384,21 @@ c.IPEngineApp.log_level = 'DEBUG'
 # c.EngineFactory.paramiko = False
 
 #------------------------------------------------------------------------------
-# Kernel configuration
+# IPythonKernel configuration
 #------------------------------------------------------------------------------
+
+# IPythonKernel will inherit config from: Kernel
 
 # Whether to use appnope for compatiblity with OS X App Nap.
 # 
 # Only affects OS X >= 10.9.
-# c.Kernel._darwin_app_nap = True
+# c.IPythonKernel._darwin_app_nap = True
 
 # 
-# c.Kernel._execute_sleep = 0.0005
+# c.IPythonKernel._execute_sleep = 0.0005
 
 # 
-# c.Kernel._poll_interval = 0.05
+# c.IPythonKernel._poll_interval = 0.05
 
 #------------------------------------------------------------------------------
 # MPI configuration
@@ -393,10 +407,10 @@ c.IPEngineApp.log_level = 'DEBUG'
 # Configurable for MPI initialization
 
 # 
-c.MPI.default_inits = {'mpi4py': 'from mpi4py import MPI as mpi\nmpi.size = mpi.COMM_WORLD.Get_size()\nmpi.rank = mpi.COMM_WORLD.Get_rank()\nprint mpi.rank\n'}
+# c.MPI.default_inits = {'pytrilinos': 'from PyTrilinos import Epetra\nclass SimpleStruct:\npass\nmpi = SimpleStruct()\nmpi.rank = 0\nmpi.size = 0\n', 'mpi4py': 'from mpi4py import MPI as mpi\nmpi.size = mpi.COMM_WORLD.Get_size()\nmpi.rank = mpi.COMM_WORLD.Get_rank()\n'}
 
 # Initialization code for MPI
 # c.MPI.init_script = ''
 
 # How to enable MPI (mpi4py, pytrilinos, or empty string to disable).
-c.MPI.use = 'mpi4py'
+# c.MPI.use = ''
