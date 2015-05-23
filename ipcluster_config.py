@@ -704,13 +704,14 @@ c.IPClusterEngines.engine_launcher_class = 'PBS'
 #c.PBSEngineSetLauncher.batch_template_file = os.path.expanduser('~/pbs.engine.template')
 c.PBSEngineSetLauncher.batch_template = ur"""#!/bin/bash
 #PBS -N ipy_pro
-#PBS -A ERDCV00898R40
+#PBS -A ERDCV00898ENQ
 #PBS -l application=proteus
 #PBS -j oe
 #PBS -l walltime=01:00:00
-#PBS -l ncpus={n}
+#PBS -l select={n//24}:ncpus=24:mpiprocs=24
 #PBS -q debug
-mpiexec_mpt -np {n} ipengine --profile-dir={profile_dir}
+export PROTEUS_ARCH='lightning.gnu'
+aprun -n {n} ipengine --profile-dir={profile_dir}
 """
 
 # The PBS submit command ['qsub']
